@@ -1,0 +1,30 @@
+---
+
+name: Publish Response Area
+
+outputs:
+  pages-url:
+    description: GitHub Pages deployment URL
+    value: ${{ steps.deploy-pages.outputs.page_url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.14.0'
+        registry-url: 'https://npm.pkg.github.com'
+    - name: Install dependencies
+      run: yarn install
+    - name: Build Web Components
+      run: yarn build
+    - name: Build Storybook
+      run: yarn build-storybook
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: storybook-static/
+    - name: Deploy Pages artifact
+      id: deploy-pages
+      uses: actions/deploy-pages@v4
