@@ -17,10 +17,13 @@ runs:
         registry-url: 'https://npm.pkg.github.com'
     - name: Install dependencies
       run: yarn install
+      shell: bash
     - name: Build Web Components
       run: yarn build
+      shell: bash
     - name: Build Storybook
       run: yarn build-storybook
+      shell: bash
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
