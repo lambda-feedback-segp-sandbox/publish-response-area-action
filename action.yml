@@ -22,7 +22,7 @@ runs:
       run: yarn build
       shell: bash
     - name: Build Storybook
-      run: yarn build-storybook
+      run: yarn build:storybook
       shell: bash
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
